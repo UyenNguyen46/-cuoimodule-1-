@@ -5,28 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-<canvas id="canvas" style="height: 400px; width: 400px; border: 1px solid"></canvas>
+<canvas
+        id="canvas"
+        style="border: 1px solid black"
+        width="400"
+        height="400"
+></canvas>
 <script>
     class Rectangle {
-        x;
-        y;
-        width;
-        height;
-        color;
-
-        draw () {
-            let ctx=document.getElementById('canvas').getContext('2d');
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-            ctx.beginPath()
+        constructor(x, y, width, height, color) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.color = color;
+        }
+        render(canvas) {
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.height, this.width);
         }
     }
-    let a = new Rectangle();
-    a.x = 10;
-    a.y = 10;
-    a.width = 200;
-    a.height = 100;
-    a.color = "#000000";
-    a.draw();
+
+    const canvas = document.querySelector("canvas");
+    const rect = new Rectangle(10, 10, 100, 200, "#000000");
+    rect.render(canvas);
 </script>
 </body>
 </html>
